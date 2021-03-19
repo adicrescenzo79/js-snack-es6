@@ -31,13 +31,13 @@ $(document).ready(function(){
     {
       name: 'Fragolina',
       color: 'marroncino',
-      age: 6,
+      age: 3,
       gender: 'femmina'
     },
     {
       name: 'Tredici',
       color: 'marrone',
-      age: 10,
+      age: 9,
       gender: 'femmina'
     },
   ]
@@ -47,11 +47,54 @@ $(document).ready(function(){
   cats.forEach((item) => {
     console.log(`Il gatto ${item.name} è di colore ${item.color}`);
     $('#gatti').append(`<li>Il gatto ${item.name} è di colore ${item.color}</li>`);
-
   });
 
 
+  // Milestone 2
+  // Dividere i gatti in due contenitori distinti in base al sesso
+  // e aggiungere a fianco di ogni gattino un fiocco colorato di rosa, se femmina,
+  // o di blu, se maschio.
+  var catsM = cats.filter((item) => (item.gender == 'maschio'));
+  var catsF = cats.filter((item) => (item.gender == 'femmina'));
 
+  catsM.forEach((item) => {
+    console.log(`Il gatto ${item.name} è di colore ${item.color}`);
+    $('#gatti-maschi').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon"></i></li>`);
+  });
+
+  catsF.forEach((item) => {
+    console.log(`Il gatto ${item.name} è di colore ${item.color}`);
+    $('#gatti-femmine').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon"></i></li>`);
+  });
+
+  // Il colore del fiocco deve essere più tenue se il gatto è più giovane,
+  // più scuro se il gatto è più vecchio.
+  const catsNew = [];
+  cats.forEach((item) => {
+    let opacity = item.age / 10;
+    let newItem = {
+      ...item,
+      opacity: opacity,
+    }
+    catsNew.push(newItem);
+  });
+
+  console.log(catsNew);
+
+  catsM = catsNew.filter((item) => (item.gender == 'maschio'));
+  catsF = catsNew.filter((item) => (item.gender == 'femmina'));
+
+  console.log(catsM);
+
+  catsM.forEach((item) => {
+    console.log(`Il gatto ${item.name} è di colore ${item.color}`);
+    $('#gatti-maschi.op').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon" style="opacity: ${item.opacity}"></i></li>`);
+  });
+
+  catsF.forEach((item) => {
+    console.log(`Il gatto ${item.name} è di colore ${item.color}`);
+    $('#gatti-femmine.op').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon" style="opacity: ${item.opacity}"></i></li>`);
+  });
 
 
 
