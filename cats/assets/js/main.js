@@ -84,8 +84,6 @@ $(document).ready(function(){
   catsM = catsNew.filter((item) => (item.gender == 'maschio'));
   catsF = catsNew.filter((item) => (item.gender == 'femmina'));
 
-  console.log(catsM);
-
   catsM.forEach((item) => {
     console.log(`Il gatto ${item.name} è di colore ${item.color}`);
     $('#gatti-maschi.op').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon" style="opacity: ${item.opacity}"></i></li>`);
@@ -95,6 +93,28 @@ $(document).ready(function(){
     console.log(`Il gatto ${item.name} è di colore ${item.color}`);
     $('#gatti-femmine.op').append(`<li>Il gatto ${item.name} è di colore ${item.color}<i class="fas fa-ribbon" style="opacity: ${item.opacity}"></i></li>`);
   });
+
+  // Milestone 3
+  // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini
+  // maschio, inserendo solamente nome, colore e opacità del fiocco per
+  // ogni gatto.
+  let catsNew1 = [...catsM, ...catsF];
+
+  console.log(catsNew1);
+
+  const catsNew2 = [];
+  catsNew1.map((item) => {
+    const {name, color, opacity} = item;
+    let newItem = {
+      name: name,
+      color: color,
+      opacity: opacity
+    }
+    catsNew2.push(newItem);
+  });
+
+  console.log(catsNew2);
+
 
 
 
